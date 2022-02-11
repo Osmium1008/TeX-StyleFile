@@ -1,9 +1,9 @@
 # TeX-StyleFile
-このリポジトリはAsosan作成のTeXスタイルファイル集になります。
+このリポジトリはAsosan作成のTeXスタイルファイル集です。
 
-## 文実資料用TeX
-\usepackage{bunjitsudoc}
-で指定して下さい。
+## （文実）資料用TeX
+\usepackage{buntex} で指定します。
+使い方に関してはhowtobuntex.pdfを参照してください（未作成）。
 
 ## 冊子用TeX
 \usepackage{asosanbooklet}
