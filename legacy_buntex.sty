@@ -1,0 +1,66 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{legacy_buntex}[2022/2/17]
+\usepackage[skins]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[explicit]{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage[deluxe,jis2004]{otf}
+\usepackage[noto-otc]{pxchfon}
+
+%font
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\renewcommand{\familydefault}{\sfdefault}
+
+%layout
+\setlength{\headheight}{0truemm}
+\setlength{\headsep}{0truemm}
+\setlength{\topmargin}{-7.4truemm}
+\setlength{\oddsidemargin}{-5.4truemm}
+\setlength{\evensidemargin}{-5.4truemm}
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-40truemm}
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-38truemm}
+\setlength{\footskip}{10truemm}
+
+%title
+\renewcommand{\maketitle}{
+  \begin{tcolorbox}[sharp corners, colframe=black,
+    colback=white, segmentation style={thin, solid, black},
+    top = 0truemm, bottom = 0truemm, middle = 0truemm, left = 2truemm, right = 2truemm,
+    boxsep=0.5truemm, toprule=0.2truemm, leftrule=0.2truemm, rightrule=1truemm, bottomrule=1truemm]
+    \raggedright{\gtfamily\fontsize{10.5truept}{0em}\selectfont\@author}
+    \tcbline 
+    \vspace{1truemm}
+    \centering{{\bfseries\gtfamily\fontsize{21truept}{0em}\selectfont\@title}}
+    \vspace{1truemm}
+    \tcbline 
+    \raggedleft{\gtfamily\fontsize{10.5truept}{0em}\selectfont\@date}
+  \end{tcolorbox}
+
+  \global\let\resumetitle\relax
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\@title\@empty
+  \global\let\title\relax
+  \global\let\author\relax
+  \global\let\date\relax
+  \global\let\and\relax
+}
+
+%footer
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.0pt}
+\fancyfoot[CO,CE]{-\thepage{}-}
+
+%section
+\titleformat{\section}{\fontsize{12truept}{0mm}\selectfont\bfseries\gtfamily}{}{0pt}{\titleline[l]{\thesection .\hspace{.5zw} #1}\titlerule*[3pt]{.}}
+\titlespacing{\section}{0mm}{4truemm}{0truemm}
+\titleformat{\subsection}{\fontsize{10.5truept}{0mm}\selectfont\gtfamily}{}{0pt}{\underline{\thesubsection #1}}
+\titlespacing{\subsection}{0mm}{3truemm}{0truemm}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{(\arabic{subsection})}
+
+\newcommand{\responsibility}[2]{\begin{flushright} 文責: #1(#2) \end{flushright}}
