@@ -7,6 +7,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[deluxe,jis2004]{otf}
 \usepackage[noalphabet]{pxchfon}
+\usepackage{ulem}
 
 %font
 \setminchofont{HiraMinProN.ttc}
@@ -21,17 +22,17 @@
 \setlength{\headheight}{0truemm}
 \setlength{\headsep}{0truemm}
 \setlength{\topmargin}{-7.4truemm}
-\setlength{\oddsidemargin}{-5.4truemm}
-\setlength{\evensidemargin}{-5.4truemm}
+\setlength{\oddsidemargin}{-3.4truemm}
+\setlength{\evensidemargin}{-3.4truemm}
 \setlength{\textwidth}{\paperwidth}
-\addtolength{\textwidth}{-40truemm}
+\addtolength{\textwidth}{-44truemm}
 \setlength{\textheight}{\paperheight}
 \addtolength{\textheight}{-38truemm}
 \setlength{\footskip}{10truemm}
 
 %title
 \renewcommand{\maketitle}{
-  \begin{tcolorbox}[sharp corners, colframe=black,
+  \begin{tcolorbox}[sharp corners, colframe=black, oversize,
     colback=white, segmentation style={thin, solid, black},
     top = 0truemm, bottom = 0truemm, middle = 0truemm, left = 2truemm, right = 2truemm,
     boxsep=0.5truemm, toprule=0.2truemm, leftrule=0.2truemm, rightrule=1truemm, bottomrule=1truemm]
@@ -72,3 +73,20 @@
 \newcommand*{\responsibility}[1]{\gdef\@responsibility{#1}}
 \newcommand*{\department}[1]{\gdef\@department{#1}}
 \newcommand{\makeresponsibility}{\begin{flushright} 文責: \@responsibility(\@department) \end{flushright}}
+
+%Application form
+\newcommand*{\deadline}[1]{\gdef\@deadline{\gtfamily\bfseries 提出期限: #1}}
+\newcommand{\makeapplicationform}[1][\@department ピジョンボックス]{
+  \begin{flushleft}
+    {
+    \uwave{\gtfamily\bfseries ボールペンで記入すること}\hspace{2zw}%
+    \uwave{\@deadline}\hspace{2zw}%
+    提出先: #1\\
+    \vspace{5truemm}
+    \underline{団体名\hspace{17zw}}\hspace{2zw}\underline{顧問署名\hspace{16zw}}\\
+    \vspace{4truemm}
+    \underline{デコ責氏名\hspace{15.5zw}・\hspace{20.5zw}}\\
+    \vspace{4truemm}
+    }
+  \end{flushleft}
+}
