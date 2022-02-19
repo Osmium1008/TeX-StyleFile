@@ -68,4 +68,7 @@
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\thesubsection}{(\arabic{subsection})}
 
-\newcommand{\responsibility}[2]{\begin{flushright} 文責: #1(#2) \end{flushright}}
+%responsibility
+\newcommand*{\responsibility}[1]{\gdef\@responsibility{#1}}
+\newcommand*{\department}[1]{\gdef\@department{#1}}
+\newcommand{\makeresponsibility}{\begin{flushright} 文責: \@responsibility(\@department) \end{flushright}}
