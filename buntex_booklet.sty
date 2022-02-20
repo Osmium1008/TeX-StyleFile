@@ -1,0 +1,93 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{buntex_booklet}[2022/2/20]
+\usepackage[skins]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[explicit]{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage[deluxe,jis2004]{otf}
+\usepackage[noalphabet]{pxchfon}
+\usepackage{ulem}
+
+%font
+\setmediumminchofont[0]{HiraMinProN.ttc}
+\setboldminchofont[2]{HiraMinProN.ttc}
+\setmediumgothicfont[2]{HiraKakuGothic-W3.ttc} % \gtfamily\mdseries
+\setboldgothicfont[2]{HiraKakuGothic-W6.ttc}       % \gtfamily\bfseries
+\setxboldgothicfont[3]{HiraKakuGothic-W8.ttc}      % \gtfamily\ebseries
+\setmarugothicfont[1]{HiraMaruProN-W4.ttc} 
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\renewcommand{\familydefault}{\sfdefault}
+
+%layout
+\setlength{\headheight}{0truemm}
+\setlength{\headsep}{0truemm}
+\setlength{\topmargin}{-10.4truemm}
+\setlength{\oddsidemargin}{-1truein}
+\addtolength{\oddsidemargin}{12truemm}
+\setlength{\evensidemargin}{-1truein}
+\addtolength{\evensidemargin}{18truemm}
+\setlength{\textwidth}{\paperwidth}
+\addtolength{\textwidth}{-30truemm}
+\setlength{\textheight}{\paperheight}
+\addtolength{\textheight}{-38truemm}
+\setlength{\footskip}{10truemm}
+
+
+%footer
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.0pt}
+\fancyhead[LO,CO,RO,LE,CE,RE]{}
+\fancyfoot[CO,CE]{}
+\fancyfoot[LE]{\mcfamily\two@digits\thepage{}\space|\space\@title}
+\fancyfoot[RO]{\mcfamily\rightmark\space|\space\two@digits\thepage{}}
+
+\makeatletter
+\renewcommand{\chapter}{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \global\@topnum\z@
+  \secdef\@chapter\@schapter}
+\makeatother
+
+%section
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter\space#1}{\thechapter\space#1}}
+
+\titleformat{\chapter}{\fontsize{20truept}{0mm}\selectfont\bfseries\gtfamily}{}{0pt}{
+  \begin{tcolorbox}[enhanced, sharp corners, colframe=black, 
+   ,  halign=center, height=13truemm, colback=white,oversize,
+      underlay={
+          \node[minimum width=25mm,minimum height=12mm,text=white,fill=black, anchor=north west]at ([xshift=-0.1mm]interior.north west) {\mdseries\sffamily \thechapter};
+          \draw[fill=white, draw=white] ([xshift=25.65mm, yshift=0.1mm] interior.south west) -- ([xshift=25.65mm, yshift=4.1mm] interior.south west) --([xshift=21.65mm, yshift=0.1mm] interior.south west) --cycle;
+        }
+    ]
+    #1
+  \end{tcolorbox}
+}
+\titlespacing{\chapter}{0mm}{-10truemm}{1truemm}
+\titleformat{\section}{\fontsize{12truept}{0mm}\selectfont\bfseries\gtfamily}{}{0pt}{\titleline[l]{\thesection . #1}\titlerule*[3pt]{.}}
+\titlespacing{\section}{0mm}{4truemm}{0truemm}
+\titleformat{\subsection}{\fontsize{10.5truept}{0mm}\selectfont\gtfamily}{}{0pt}{\underline{\thesubsection #1}}
+\titlespacing{\subsection}{0mm}{3truemm}{0truemm}
+
+\renewcommand{\thechapter}{\S\space \ifnum\value{chapter}<10 0\fi\arabic{chapter}}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{(\arabic{subsection})}
+
+\setcounter{chapter}{-1}
+
+%Application form
+\newcommand*{\deadline}[1]{\gdef\@deadline{\gtfamily\bfseries 提出期限: #1}}
+\newcommand{\makeapplicationform}[1][\@department ピジョンボックス]{
+  \begin{flushleft}
+    {
+    \uwave{\gtfamily\bfseries ボールペンで記入すること}\hspace{2zw}%
+    \uwave{\@deadline}\hspace{2zw}%
+    提出先: #1\\
+    \vspace{5truemm}
+    \underline{団体名\hspace{17zw}}\hspace{2zw}\underline{顧問署名\hspace{16zw}}\\
+    \vspace{4truemm}
+    \underline{デコ責氏名\hspace{15.5zw}・\hspace{20.5zw}}\\
+    \vspace{4truemm}
+    }
+  \end{flushleft}
+}
