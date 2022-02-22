@@ -18,6 +18,7 @@
 \setmarugothicfont[1]{HiraMaruProN-W4.ttc} 
 \renewcommand{\kanjifamilydefault}{\gtdefault}
 \renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\baselinestretch}{0.9}
 
 %layout
 \setlength{\headheight}{0truemm}
@@ -52,25 +53,28 @@
 %section
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter\space#1}{\thechapter\space#1}}
 
-\titleformat{\chapter}{\fontsize{20truept}{0mm}\selectfont\bfseries\gtfamily}{}{0pt}{
+\titleformat{\chapter}{\fontsize{18truept}{0mm}\selectfont\bfseries\gtfamily}{}{0pt}{
   \begin{tcolorbox}[enhanced, sharp corners, colframe=black, 
-   ,  halign=center, height=13truemm, colback=white,oversize,
+     halign=center, height=13truemm, colback=white,oversize,
       underlay={
-          \node[minimum width=25mm,minimum height=12mm,text=white,fill=black, anchor=north west]at ([xshift=-0.1mm]interior.north west) {\mdseries\sffamily \thechapter};
-          \draw[fill=white, draw=white] ([xshift=25.65mm, yshift=0.1mm] interior.south west) -- ([xshift=25.65mm, yshift=4.1mm] interior.south west) --([xshift=21.65mm, yshift=0.1mm] interior.south west) --cycle;
+          \draw[fill=black, draw=black] (interior.north west) -- (interior.south west) -- ([xshift=20mm]interior.south west)
+           -- ([xshift=24mm, yshift=4mm]interior.south west) -- ([xshift=24mm]interior.north west) -- cycle;
+          \node[minimum width=25mm,minimum height=12mm,text=white, anchor=north west]at ([xshift=-0.1mm]interior.north west) {\mdseries\sffamily \thechapter};
         }
     ]
     #1
   \end{tcolorbox}
 }
-\titlespacing{\chapter}{0mm}{-10truemm}{1truemm}
-\titleformat{\section}{\fontsize{12truept}{0mm}\selectfont\bfseries\gtfamily}{}{0pt}{\titleline[l]{\thesection . #1}\titlerule*[3pt]{.}}
-\titlespacing{\section}{0mm}{4truemm}{0truemm}
-\titleformat{\subsection}{\fontsize{10.5truept}{0mm}\selectfont\gtfamily}{}{0pt}{\underline{\thesubsection #1}}
-\titlespacing{\subsection}{0mm}{3truemm}{0truemm}
+\titlespacing{\chapter}{0truemm}{-5truemm}{1truemm}
+\titleformat{\section}{\fontsize{13truept}{0truemm}\selectfont\gtfamily}{}{0pt}{\thesection\space #1}
+\titlespacing{\section}{0truemm}{4truemm}{1truemm}
+\titleformat{\subsection}{\fontsize{10truept}{0truemm}\selectfont\gtfamily}{}{0pt}{\underline{\thesubsection #1}}
+\titlespacing{\subsection}{0truemm}{2truemm}{0truemm}
+\titleformat{\subsubsection}{\fontsize{10truept}{0truemm}\selectfont\gtfamily}{}{0pt}{\dashuline{◇#1}}
+\titlespacing{\subsubsection}{0truemm}{2truemm}{0truemm}
 
 \renewcommand{\thechapter}{\S\space \ifnum\value{chapter}<10 0\fi\arabic{chapter}}
-\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesection}{\arabic{chapter}-\arabic{section}}
 \renewcommand{\thesubsection}{(\arabic{subsection})}
 
 \setcounter{chapter}{-1}
